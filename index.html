@@ -4,18 +4,221 @@
 <head>
 
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Presente Confidencial</title>
 
 
-    <!-- =========================
+    <!-- =====================================================
          CSS
-         ========================= -->
+         
+         Eu poderia separar isso em outro arquivo.
+         Mas aí teria que atualizar 3 arquivos no GitHub.
+         
+         NÃO.
+         
+         Tudo aqui.
+         
+         Porque eu tenho mais o que fazer.
+         
+         ===================================================== -->
 
     <style>
 
-        /* TODO O CSS VAI AQUI */
+        /*
+            =================================================
+            CONFIGURAÇÃO GERAL
+            =================================================
+        */
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            min-height: 100vh;
+
+            background: #080808;
+
+            color: #00ff66;
+
+            font-family: "Courier New", monospace;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 20px;
+
+        }
+
+
+        /*
+            =================================================
+            TERMINAL
+            =================================================
+
+            Essa caixa aqui é o cérebro da operação.
+
+            Ou pelo menos finge que é.
+        */
+
+        .terminal {
+
+            width: 100%;
+
+            max-width: 700px;
+
+            background: #050505;
+
+            border: 1px solid #00ff66;
+
+            padding: 30px;
+
+            box-shadow: 0 0 30px rgba(0, 255, 102, 0.25);
+
+            border-radius: 8px;
+
+        }
+
+
+        /*
+            =================================================
+            TEXTO
+            =================================================
+        */
+
+        #texto {
+
+            white-space: pre-line;
+
+            line-height: 1.7;
+
+            min-height: 280px;
+
+            font-size: 16px;
+
+        }
+
+
+        /*
+            =================================================
+            CURSOR
+            =================================================
+
+            Um quadradinho piscando.
+
+            Engenharia de ponta.
+        */
+
+        .cursor {
+
+            animation: piscar 0.8s infinite;
+
+        }
+
+
+        /*
+            =================================================
+            BOTÃO
+            =================================================
+        */
+
+        button {
+
+            display: none;
+
+            margin-top: 25px;
+
+            padding: 14px 22px;
+
+            background: #00ff66;
+
+            color: #000;
+
+            border: none;
+
+            border-radius: 4px;
+
+            font-family: "Courier New", monospace;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            font-size: 15px;
+
+        }
+
+
+        /*
+            Quando o mouse passa:
+
+            FICA BRANCO.
+
+            Porque sim.
+        */
+
+        button:hover {
+
+            background: white;
+
+        }
+
+
+        /*
+            =================================================
+            ANIMAÇÃO DO CURSOR
+            =================================================
+        */
+
+        @keyframes piscar {
+
+            0% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+
+        }
+
+
+        /*
+            =================================================
+            RESPONSIVIDADE
+            =================================================
+
+            Para celular não ficar uma desgraça.
+        */
+
+        @media (max-width: 600px) {
+
+            .terminal {
+
+                padding: 20px;
+
+            }
+
+            #texto {
+
+                font-size: 14px;
+
+            }
+
+        }
 
     </style>
 
@@ -24,32 +227,351 @@
 
 <body>
 
-    <!-- =========================
+
+    <!-- =====================================================
          HTML
-         ========================= -->
+         ===================================================== -->
+
 
     <div class="terminal">
 
+
+        <!--
+            Aqui o JavaScript vai colocar
+            as mensagens.
+
+            Se estiver vazio por alguns segundos:
+
+            CALMA.
+
+            O JS está trabalhando.
+        -->
+
         <div id="texto"></div>
+
+
+        <!--
+            O famoso quadradinho.
+
+            Não serve pra absolutamente nada
+            além de parecer tecnológico.
+        -->
 
         <span class="cursor">█</span>
 
+
+        <!--
+            Esse botão começa escondido.
+
+            O JavaScript libera ele
+            depois da "investigação".
+        -->
+
         <button id="botao" onclick="mostrarPresente()">
-            ACESSAR PRESENTE
+
+            🎁 ACESSAR PRESENTE
+
         </button>
+
 
     </div>
 
 
-    <!-- =========================
+
+    <!-- =====================================================
          JAVASCRIPT
-         ========================= -->
+         
+         Agora começa a desgraça.
+         ===================================================== -->
+
 
     <script>
 
-        // TODO O JAVASCRIPT VAI AQUI
+
+        /*
+            =================================================
+            MENSAGENS
+            =================================================
+
+            Essas são as mensagens que aparecem
+            no terminal.
+
+            Sim, eu poderia fazer isso de um jeito
+            muito mais elaborado.
+
+            Mas NÃO.
+        */
+
+
+        const mensagens = [
+
+            "🔐 SISTEMA DE PRESENTES — 2026",
+
+            "",
+
+            "Inicializando sistema...",
+
+            "Carregando módulos...",
+
+            "████████████████████ 100%",
+
+            "",
+
+            "Verificando destinatário...",
+
+            "Analisando identidade...",
+
+            "Identidade encontrada.",
+
+            "",
+
+            "DESTINATÁRIO: PAI",
+
+            "",
+
+            "Localizando presente...",
+
+            "Consultando banco de dados...",
+
+            "Procurando presente material...",
+
+            "",
+
+            "⚠️ ERRO",
+
+            "Presente material não encontrado.",
+
+            "",
+
+            "Procurando alternativa...",
+
+            "Executando protocolo de emergência...",
+
+            "████████████████████ 100%",
+
+            "",
+
+            "Alternativa encontrada.",
+
+            "",
+
+            "Sistema pronto."
+
+        ];
+
+
+        /*
+            =================================================
+            PEGANDO OS ELEMENTOS
+            =================================================
+
+            Aqui o JavaScript procura os elementos
+            que criamos no HTML.
+
+            Se isso não funcionar:
+
+            EU NÃO SEI.
+
+            Brincadeira. A gente conserta.
+        */
+
+
+        const texto = document.getElementById("texto");
+
+        const botao = document.getElementById("botao");
+
+
+        /*
+            =================================================
+            CONTADOR
+            =================================================
+
+            Começamos no zero.
+
+            Porque computador.
+        */
+
+
+        let linha = 0;
+
+
+        /*
+            =================================================
+            FUNÇÃO DE ESCREVER
+            =================================================
+        */
+
+
+        function escrever() {
+
+
+            /*
+                Ainda existem mensagens?
+
+                Então CONTINUA.
+            */
+
+
+            if (linha < mensagens.length) {
+
+
+                /*
+                    Adiciona a mensagem atual
+                    dentro da tela.
+                */
+
+                texto.innerHTML += mensagens[linha] + "\n";
+
+
+                /*
+                    Vai para a próxima mensagem.
+
+                    VAI, PORRA.
+                */
+
+                linha++;
+
+
+                /*
+                    Espera 450 milissegundos.
+
+                    Depois escreve a próxima.
+                */
+
+                setTimeout(escrever, 450);
+
+
+            }
+
+            else {
+
+
+                /*
+                    ACABOU.
+
+                    Agora mostra o botão.
+                */
+
+                botao.style.display = "block";
+
+
+            }
+
+        }
+
+
+
+        /*
+            =================================================
+            FUNÇÃO DO BOTÃO
+            =================================================
+
+            Essa é a parte importante.
+
+            Quando o pai clicar:
+
+            💀
+        */
+
+
+        function mostrarPresente() {
+
+
+            /*
+                Substitui tudo pelo resultado final.
+            */
+
+
+            texto.innerHTML = `
+
+🎁 PRESENTE DESBLOQUEADO
+
+================================
+
+PARABÉNS, PAI.
+
+Após uma análise extremamente
+rigorosa do sistema...
+
+VOCÊ FOI SELECIONADO.
+
+================================
+
+🏆 PRÊMIO:
+
+❤️ MINHA PRESENÇA ❤️
+
+================================
+
+Valor financeiro:
+R$ 0,00
+
+Valor sentimental:
+████████████████████
+
+Troca:
+NÃO
+
+Reembolso:
+NÃO
+
+Devolução:
+NEM FODENDO.
+
+================================
+
+FELIZ DIA DOS PAIS ❤️
+
+`;
+
+
+
+            /*
+                Esconde o botão.
+
+                Porque o presente já foi entregue.
+            */
+
+            botao.style.display = "none";
+
+
+        }
+
+
+
+        /*
+            =================================================
+            INICIANDO O SISTEMA
+            =================================================
+
+            Aqui começa a maluquice.
+        */
+
+
+        escrever();
+
+
+        /*
+            =================================================
+            FIM
+            =================================================
+
+            Se isso funcionou:
+
+            NÃO MEXE.
+
+            NÃO ENCOSTA.
+
+            NÃO RESPIRA PERTO.
+
+            DEIXA FUNCIONANDO.
+
+            =================================================
+        */
+
 
     </script>
+
 
 </body>
 
