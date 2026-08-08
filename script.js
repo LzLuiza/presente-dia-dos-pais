@@ -1,214 +1,346 @@
-// ============================================
-// ESTADO
-// ============================================
+// ========================================
+// PERGUNTAS
+// ========================================
 
-let pontuacao = 0;
+const perguntas = [
 
+    {
+        pergunta:
+            "Quando sua filha diz que está estudando, qual deve ser sua primeira reação?",
 
-// ============================================
-// TELAS
-// ============================================
+        opcoes: [
+            "A) Confiar nela",
+            "B) Perguntar como está indo",
+            "C) Duvidar imediatamente",
+            "D) Solicitar provas documentais"
+        ],
 
-const telas = {
-
-    inicio: document.getElementById("inicio"),
-
-    investigacao: document.getElementById("investigacao"),
-
-    gostos: document.getElementById("gostos"),
-
-    personalidade: document.getElementById("personalidade"),
-
-    memorias: document.getElementById("memorias"),
-
-    pausa: document.getElementById("pausa"),
-
-    declaracao: document.getElementById("declaracao"),
-
-    resultado: document.getElementById("resultado"),
-
-    certificado: document.getElementById("certificado")
-
-};
+        correta: 0
+    },
 
 
-// ============================================
-// TROCA DE TELA
-// ============================================
+    {
+        pergunta:
+            "O que fazer quando sua filha gosta de anime ou The Flash?",
 
-function mostrarTela(nome) {
+        opcoes: [
+            "A) Respeitar o hobby",
+            "B) Assistir junto",
+            "C) Chamar de infantil",
+            "D) Questionar a validade do hobby"
+        ],
 
-    for (let tela in telas) {
+        correta: 0
+    },
 
-        telas[tela].style.display = "none";
 
+    {
+        pergunta:
+            "Quando sua filha gosta de uma música que você não gosta:",
+
+        opcoes: [
+            "A) Respeitar",
+            "B) Perguntar por que ela gosta",
+            "C) Julgar a playlist",
+            "D) Declarar que a música é ruim"
+        ],
+
+        correta: 0
+    },
+
+
+    {
+        pergunta:
+            "Quando sua filha discorda de você e apresenta argumentos:",
+
+        opcoes: [
+            "A) Ela está tentando brigar",
+            "B) Ela está sendo desrespeitosa",
+            "C) Ela tem uma opinião diferente",
+            "D) Ela precisa concordar"
+        ],
+
+        correta: 2
+    },
+
+
+    {
+        pergunta:
+            "Quando o pai age como uma 'bomba-relógio':",
+
+        opcoes: [
+            "A) Nada acontece",
+            "B) A filha continua normalmente",
+            "C) A filha pensa duas vezes antes de se aproximar",
+            "D) O Ministério da Saúde é acionado"
+        ],
+
+        correta: 2
+    },
+
+
+    {
+        pergunta:
+            "Sua filha achar uma mulher bonita significa que ela está copiando você?",
+
+        opcoes: [
+            "A) Sim",
+            "B) Não — sua filha tem olhos",
+            "C) Não faz sentido nenhum",
+            "D) Pai, pelo amor de Deus"
+        ],
+
+        correta: 1
+    },
+
+
+    {
+        pergunta:
+            "Qual atitude merece reconhecimento?",
+
+        opcoes: [
+            "A) Ignorar o que a filha gosta",
+            "B) Fazer uma surpresa",
+            "C) Esquecer pequenas memórias",
+            "D) Comprar goiabada depois de vê-la olhando"
+        ],
+
+        correta: 3
     }
 
-    telas[nome].style.display = "block";
+];
+
+
+// ========================================
+// ESTADO
+// ========================================
+
+let perguntaAtual = 0;
+
+let acertos = 0;
+
+
+// ========================================
+// TELAS
+// ========================================
+
+const inicio =
+    document.getElementById("inicio");
+
+const perguntasTela =
+    document.getElementById("perguntas");
+
+const acdc =
+    document.getElementById("acdc");
+
+const certificado =
+    document.getElementById("certificado");
+
+
+// ========================================
+// ELEMENTOS
+// ========================================
+
+const botaoIniciar =
+    document.getElementById("iniciar");
+
+const numeroPergunta =
+    document.getElementById("numero-pergunta");
+
+const textoPergunta =
+    document.getElementById("pergunta");
+
+const opcoes =
+    document.getElementById("opcoes");
+
+const feedback =
+    document.getElementById("feedback");
+
+const botaoProxima =
+    document.getElementById("proxima");
+
+const botaoCertificado =
+    document.getElementById("ir-certificado");
+
+
+// ========================================
+// TROCAR TELA
+// ========================================
+
+function mostrarTela(tela) {
+
+    document
+        .querySelectorAll(".tela")
+        .forEach(function (elemento) {
+
+            elemento.classList.remove("ativa");
+
+        });
+
+
+    tela.classList.add("ativa");
 
 }
 
 
-// ============================================
-// INÍCIO
-// ============================================
+// ========================================
+// INICIAR
+// ========================================
 
-document
-    .getElementById("btn-iniciar")
-    .addEventListener("click", function () {
+botaoIniciar.addEventListener(
+    "click",
+    function () {
 
-        mostrarTela("investigacao");
+        perguntaAtual = 0;
 
-    });
+        acertos = 0;
 
+        mostrarPergunta();
 
-// ============================================
-// INVESTIGAÇÃO
-// ============================================
+        mostrarTela(perguntasTela);
 
-document
-    .getElementById("btn-investigacao")
-    .addEventListener("click", function () {
-
-        mostrarTela("gostos");
-
-    });
+    }
+);
 
 
-// ============================================
-// GOSTOS MUSICAIS
-// ============================================
+// ========================================
+// MOSTRAR PERGUNTA
+// ========================================
 
-const opcoesGosto =
-    document.querySelectorAll(".opcao-gosto");
+function mostrarPergunta() {
 
-
-opcoesGosto.forEach(function (botao) {
-
-    botao.addEventListener("click", function () {
-
-        const texto =
-            document.getElementById("resultado-gosto");
+    const pergunta =
+        perguntas[perguntaAtual];
 
 
-        if (botao.textContent === "Respeitar") {
+    numeroPergunta.textContent =
+        `Pergunta ${perguntaAtual + 1} de ${perguntas.length}`;
 
-            pontuacao += 3;
 
-            texto.textContent =
-                "Resposta correta. +3 pontos.";
+    textoPergunta.textContent =
+        pergunta.pergunta;
+
+
+    opcoes.innerHTML = "";
+
+
+    feedback.textContent = "";
+
+
+    botaoProxima.classList.add("escondido");
+
+
+    pergunta.opcoes.forEach(
+        function (opcao, indice) {
+
+            const botao =
+                document.createElement("button");
+
+
+            botao.textContent =
+                opcao;
+
+
+            botao.addEventListener(
+                "click",
+                function () {
+
+                    verificarResposta(indice);
+
+                }
+            );
+
+
+            opcoes.appendChild(botao);
 
         }
+    );
 
-        else if (
-            botao.textContent === "Perguntar o que ela gosta"
-        ) {
+}
 
-            pontuacao += 2;
 
-            texto.textContent =
-                "Resposta aceitável. +2 pontos.";
+// ========================================
+// VERIFICAR RESPOSTA
+// ========================================
+
+function verificarResposta(indiceEscolhido) {
+
+    const pergunta =
+        perguntas[perguntaAtual];
+
+
+    const botoes =
+        opcoes.querySelectorAll("button");
+
+
+    // Impede clicar várias vezes
+    botoes.forEach(
+        function (botao) {
+
+            botao.disabled = true;
+
+        }
+    );
+
+
+    if (indiceEscolhido === pergunta.correta) {
+
+        feedback.textContent =
+            "✓ RESPOSTA CORRETA.";
+
+        acertos++;
+
+    }
+
+    else {
+
+        feedback.textContent =
+            "✗ RESPOSTA ERRADA.";
+
+    }
+
+
+    botaoProxima.classList.remove("escondido");
+
+}
+
+
+// ========================================
+// PRÓXIMA PERGUNTA
+// ========================================
+
+botaoProxima.addEventListener(
+    "click",
+    function () {
+
+        perguntaAtual++;
+
+
+        if (perguntaAtual < perguntas.length) {
+
+            mostrarPergunta();
 
         }
 
         else {
 
-            pontuacao -= 2;
-
-            texto.textContent =
-                "Resposta inadequada. -2 pontos.";
+            mostrarTela(acdc);
 
         }
 
-    });
-
-});
-
-
-// ============================================
-// PERSONALIDADE
-// ============================================
-
-document
-    .getElementById("btn-personalidade")
-    .addEventListener("click", function () {
-
-        mostrarTela("memorias");
-
-    });
+    }
+);
 
 
-// ============================================
-// MEMÓRIAS
-// ============================================
+// ========================================
+// AC/DC → CERTIFICADO
+// ========================================
 
-document
-    .getElementById("btn-memorias")
-    .addEventListener("click", function () {
+botaoCertificado.addEventListener(
+    "click",
+    function () {
 
-        pontuacao += 2;
+        mostrarTela(certificado);
 
-        mostrarTela("pausa");
-
-    });
-
-
-// ============================================
-// PAUSA
-// ============================================
-
-document
-    .getElementById("btn-pausa")
-    .addEventListener("click", function () {
-
-        mostrarTela("declaracao");
-
-    });
-
-
-// ============================================
-// DECLARAÇÃO
-// ============================================
-
-document
-    .getElementById("btn-declaracao")
-    .addEventListener("click", function () {
-
-        mostrarTela("resultado");
-
-        document
-            .getElementById("pontuacao")
-            .textContent =
-            `Pontuação: ${pontuacao}`;
-
-        document
-            .getElementById("classificacao")
-            .textContent =
-            "Classificação: APROVADO COM RESSALVAS";
-
-    });
-
-
-// ============================================
-// CERTIFICADO
-// ============================================
-
-document
-    .getElementById("btn-certificado")
-    .addEventListener("click", function () {
-
-        mostrarTela("certificado");
-
-        document
-            .getElementById("resultado-final")
-            .textContent =
-            `Pontuação final: ${pontuacao} pontos.`;
-
-    });
-
-
-// ============================================
-// INICIAR
-// ============================================
-
-mostrarTela("inicio");
+    }
+);
