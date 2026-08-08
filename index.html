@@ -1,62 +1,200 @@
-<main class="pagina-inicial">
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-    <header>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Certificado Paternal 2026</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         PÁGINA INICIAL
+         ========================= -->
+
+    <section id="inicio" class="tela ativa">
+
         <h1>CERTIFICADO PATERNAL 2026</h1>
 
         <p class="subtitulo">
             Sistema Oficial de Avaliação de Desempenho Paterno
         </p>
-    </header>
 
-    <section class="dados">
+        <div class="dados">
 
-        <p>
-            <strong>CANDIDATO:</strong> Pai
-        </p>
+            <p><strong>CANDIDATO:</strong> Pai</p>
 
-        <p>
-            <strong>AVALIADORA:</strong> Filha
-        </p>
+            <p><strong>AVALIADORA:</strong> Filha</p>
 
-        <p>
-            <strong>PERÍODO DE AVALIAÇÃO:</strong><br>
-            13 anos, 10 meses e 4 dias
-        </p>
+            <p>
+                <strong>PERÍODO DE AVALIAÇÃO:</strong><br>
+                13 anos, 10 meses e 4 dias
+            </p>
 
-        <p>
-            <strong>STATUS DA AVALIAÇÃO:</strong><br>
-            PENDENTE
-        </p>
+            <p>
+                <strong>STATUS:</strong><br>
+                PENDENTE
+            </p>
 
-    </section>
+        </div>
 
-    <button id="iniciar">
-        INICIAR AVALIAÇÃO
-    </button>
+        <button id="iniciar">
+            INICIAR AVALIAÇÃO
+        </button>
 
-    <section class="aviso">
+        <div class="aviso">
 
-        <h3>⚠ AVISO</h3>
+            <h3>⚠ AVISO</h3>
 
-        <p>
-            Ministério da Saúde afirma:
-        </p>
+            <p>
+                Ministério da Saúde afirma:
+            </p>
 
-        <p>
-            "Sistema desenvolvido pela filha.<br>
-            Nenhuma reclamação será aceita
-            após o início."
-        </p>
+            <p>
+                "Sistema desenvolvido pela filha.<br>
+                Nenhuma reclamação será aceita
+                após o início."
+            </p>
 
-    </section>
+        </div>
 
-    <footer>
-
-        <p>
+        <footer>
             Layout fantástico pela vez que fiz um projeto
             Excel e o senhor não conseguiu enxergar.... velho.
+        </footer>
+
+    </section>
+
+
+    <!-- =========================
+         PERGUNTAS
+         ========================= -->
+
+    <section id="perguntas" class="tela">
+
+        <p id="numero-pergunta"></p>
+
+        <h1 id="pergunta"></h1>
+
+        <div id="opcoes"></div>
+
+        <p id="feedback"></p>
+
+        <button id="proxima" class="escondido">
+            PRÓXIMA
+        </button>
+
+    </section>
+
+
+    <!-- =========================
+         REGISTRO AC/DC
+         ========================= -->
+
+    <section id="acdc" class="tela">
+
+        <h1>OBSERVAÇÃO</h1>
+
+        <p>
+            A avaliadora está escutando AC/DC
+            durante a elaboração deste documento.
         </p>
 
-    </footer>
+        <p>
+            Registro efetuado.
+        </p>
 
-</main>
+        <p>
+            <strong>Prosseguir.</strong>
+        </p>
+
+        <button id="ir-certificado">
+            PROSSEGUIR
+        </button>
+
+    </section>
+
+
+    <!-- =========================
+         CERTIFICADO
+         ========================= -->
+
+    <section id="certificado" class="tela certificado">
+
+        <h1>CERTIFICADO PATERNAL 2026</h1>
+
+        <p>
+            Certificamos que:
+        </p>
+
+        <h2>PAI</h2>
+
+        <p>
+            concluiu a Avaliação de Desempenho Paterno
+            referente ao período de:
+        </p>
+
+        <h3>
+            13 anos, 10 meses e 4 dias
+        </h3>
+
+
+        <!-- Foto do pai -->
+        <img
+            src="WhatsApp Image 2026-08-07 at 21.23.40.jpeg"
+            alt="Foto do pai"
+            class="foto"
+        >
+
+
+        <!-- Foto da filha -->
+        <img
+            src="WhatsApp Image 2026-08-07 at 21.43.34.jpeg"
+            alt="Foto da filha"
+            class="foto"
+        >
+
+
+        <p>
+            <strong>RESULTADO DA AVALIAÇÃO:</strong>
+        </p>
+
+        <p>
+            Certificado concedido.
+        </p>
+
+
+        <p>
+            <strong>Avaliadora:</strong> Filha
+        </p>
+
+        <p>
+            <strong>Data de emissão:</strong> 09/08/2026
+        </p>
+
+        <p>
+            <strong>Validade:</strong> Indeterminada
+        </p>
+
+        <p>
+            <strong>Contestação:</strong> Não prevista
+        </p>
+
+
+        <footer>
+            Documento elaborado pela avaliadora.
+            Reclamações posteriores não serão analisadas.
+        </footer>
+
+    </section>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
